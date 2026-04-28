@@ -1,0 +1,550 @@
+
+<style>
+:root {
+  --font-sans: Arial, sans-serif;
+  --font-mono: Consolas, monospace;
+
+  --color-text-primary: #111;
+  --color-text-secondary: #555;
+  --color-text-tertiary: #888;
+
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #f5f5f5;
+
+  --color-border-primary: #ccc;
+  --color-border-secondary: #ddd;
+  --color-border-tertiary: #eee;
+
+  --color-background-info: #e7f3ff;
+  --color-border-info: #90caf9;
+  --color-text-info: #0b5394;
+
+  --color-background-warning: #fff4e5;
+  --color-border-warning: #ffcc80;
+  --color-text-warning: #8a6d3b;
+
+  --color-background-danger: #fdecea;
+  --color-border-danger: #f5c6cb;
+  --color-text-danger: #a94442;
+
+  --color-background-success: #e8f5e9;
+  --color-border-success: #a5d6a7;
+  --color-text-success: #2e7d32;
+
+  --border-radius-md: 6px;
+  --border-radius-lg: 10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px;line-height:1.7}
+.nav{display:flex;gap:6px;flex-wrap:wrap;padding:1rem 0 1.25rem}
+.tab{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:13px;color:var(--color-text-secondary);font-family:var(--font-sans)}
+.tab.active{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
+.tab:hover:not(.active){background:var(--color-background-secondary)}
+.section{display:none}.section.active{display:block}
+h2{font-size:18px;font-weight:500;margin:0 0 1rem;color:var(--color-text-primary)}
+h3{font-size:15px;font-weight:500;margin:1.5rem 0 0.5rem;color:var(--color-text-primary)}
+h4{font-size:14px;font-weight:500;margin:1rem 0 0.4rem;color:var(--color-text-secondary)}
+p{margin:0.5rem 0;color:var(--color-text-primary)}
+ul,ol{padding-left:1.25rem;margin:0.5rem 0}
+li{margin:0.3rem 0;color:var(--color-text-primary)}
+code{font-family:var(--font-mono);font-size:13px;background:var(--color-background-secondary);padding:1px 5px;border-radius:4px;border:0.5px solid var(--color-border-tertiary)}
+pre{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:1rem;overflow-x:auto;margin:0.75rem 0}
+pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin:0.75rem 0}
+.tip{background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0}
+.tip p,.tip li{color:var(--color-text-info)}
+.tip strong{color:var(--color-text-info)}
+.warn{background:var(--color-background-warning);border:0.5px solid var(--color-border-warning);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0}
+.warn p,.warn li{color:var(--color-text-warning)}
+.danger{background:var(--color-background-danger);border:0.5px solid var(--color-border-danger);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0}
+.danger p,.danger li{color:var(--color-text-danger)}
+.success{background:var(--color-background-success);border:0.5px solid var(--color-border-success);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:0.75rem 0}
+.success p,.success li{color:var(--color-text-success)}
+.mnemonic{background:var(--color-background-secondary);border-left:3px solid var(--color-border-info);border-radius:0;padding:0.75rem 1rem;margin:0.75rem 0}
+.summary{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem;margin:1.25rem 0 0.5rem;font-size:14px}
+.summary strong{color:var(--color-text-primary)}
+.compare-table{width:100%;border-collapse:collapse;margin:0.75rem 0;font-size:14px}
+.compare-table th{background:var(--color-background-secondary);padding:8px 12px;text-align:left;font-weight:500;border:0.5px solid var(--color-border-tertiary)}
+.compare-table td{padding:8px 12px;border:0.5px solid var(--color-border-tertiary);vertical-align:top}
+.compare-table tr:hover td{background:var(--color-background-secondary)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:var(--border-radius-md);font-weight:500;margin:0 2px}
+.badge-info{background:var(--color-background-info);color:var(--color-text-info)}
+.badge-warn{background:var(--color-background-warning);color:var(--color-text-warning)}
+.badge-danger{background:var(--color-background-danger);color:var(--color-text-danger)}
+.badge-success{background:var(--color-background-success);color:var(--color-text-success)}
+.q-block{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin:0.75rem 0}
+.q-label{font-size:12px;font-weight:500;margin-bottom:0.5rem}
+.q-text{font-size:15px;margin-bottom:0.75rem}
+.q-choices label{display:block;padding:6px 10px;border-radius:var(--border-radius-md);cursor:pointer;font-size:14px;margin:3px 0}
+.q-choices label:hover{background:var(--color-background-secondary)}
+.q-choices input{margin-right:8px}
+.reveal-btn{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:13px;font-family:var(--font-sans);margin-top:0.5rem}
+.reveal-btn:hover{background:var(--color-background-secondary)}
+.answer{display:none;margin-top:0.75rem;padding:0.75rem 1rem;background:var(--color-background-success);border-radius:var(--border-radius-md);font-size:14px;color:var(--color-text-success)}
+.answer.show{display:block}
+.short-answer-input{width:100%;padding:8px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary);margin-top:0.5rem}
+.qr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:1rem 0}
+.qr-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem;cursor:pointer;border:0.5px solid var(--color-border-tertiary)}
+.qr-q{font-size:13px;font-weight:500;margin-bottom:4px}
+.qr-a{font-size:13px;color:var(--color-text-secondary);display:none}
+.qr-card.flipped .qr-a{display:block}
+.qr-card.flipped .qr-q{color:var(--color-text-secondary);font-weight:400}
+.qr-hint{font-size:12px;color:var(--color-text-tertiary);margin-top:0.5rem}
+.score-bar{height:8px;background:var(--color-background-secondary);border-radius:4px;margin:1rem 0;overflow:hidden}
+.score-fill{height:100%;background:var(--color-border-success);border-radius:4px;transition:width 0.4s}
+</style>
+
+<h2 style="sr-only">PHP Functions and Forms — Exam Reviewer</h2>
+
+<div class="nav" id="nav">
+  <button class="tab active" onclick="showSection('functions')">PHP Functions</button>
+  <button class="tab" onclick="showSection('forms')">Forms & Validation</button>
+  <button class="tab" onclick="showSection('files')">File Handling</button>
+  <button class="tab" onclick="showSection('recall')">Quick Recall</button>
+  <button class="tab" onclick="showSection('quiz')">Practice Quiz</button>
+</div>
+
+<div id="functions" class="section active">
+  <h2>PHP Functions & Modular Programming</h2>
+
+  <h3>1. What is a function?</h3>
+  <p>A <strong>function</strong> is a named, reusable block of code that performs a specific task. It can accept input (<strong>parameters</strong>) and optionally return a result (<strong>return value</strong>).</p>
+
+  <h4>Why use functions?</h4>
+  <ul>
+    <li><strong>Reusability</strong> — write once, call many times</li>
+    <li><strong>Organization</strong> — breaks code into smaller, logical pieces</li>
+    <li><strong>Easier debugging</strong> — errors are isolated to specific functions</li>
+    <li><strong>Simpler maintenance</strong> — update the function, and the change applies everywhere it's used</li>
+    <li><strong>Efficiency</strong> — PHP compiles each function only once per page load</li>
+  </ul>
+
+  <div class="mnemonic"><strong>Mnemonic — RODEM:</strong> Reusability · Organization · Debugging · Easy maintenance · More efficient</div>
+
+  <h4>Types of functions</h4>
+  <ul>
+    <li><span class="badge badge-info">Built-in</span> Pre-made by PHP — e.g., <code>strlen()</code>, <code>array_push()</code>, <code>date()</code></li>
+    <li><span class="badge badge-success">User-defined</span> Functions you write yourself for your project's specific needs</li>
+  </ul>
+
+  <div class="summary"><strong>Section summary:</strong> Functions = named blocks of reusable code. PHP has built-in ones, and you can define your own.</div>
+
+  <h3>2. Creating and calling functions</h3>
+
+  <h4>Naming rules</h4>
+  <ul>
+    <li>Use the <code>function</code> keyword to declare it</li>
+    <li>Names are <strong>NOT</strong> case-sensitive — <code>myFunc()</code> = <code>MYFUNC()</code></li>
+    <li>Must start with a <strong>letter or underscore</strong>, never a digit</li>
+    <li>Followed by parentheses <code>()</code> and curly braces <code>{}</code></li>
+  </ul>
+
+  <div class="warn"><p><strong>Common mistake:</strong> Starting a function name with a number like <code>2doSomething()</code> — this will cause a syntax error.</p></div>
+
+  <pre><code>// Declaration
+function sayHello() {
+    echo "Hello, IT Students!";
+}
+
+// Calling it
+sayHello(); // Output: Hello, IT Students!</code></pre>
+
+  <div class="tip"><p><strong>Exam tip:</strong> Declaring a function does NOT run it. You must call it separately.</p></div>
+
+  <div class="summary"><strong>Section summary:</strong> Declare with <code>function name() {}</code>. Call it by writing <code>name()</code>. Case doesn't matter.</div>
+
+  <h3>3. Parameters and arguments</h3>
+  <p><strong>Parameter</strong> = the variable placeholder in the function definition.<br>
+  <strong>Argument</strong> = the actual value you pass in when calling the function.</p>
+
+  <div class="tip"><p><strong>Memory trick:</strong> <em>"Parameters are in the <strong>P</strong>lan (definition), Arguments are the <strong>A</strong>ctual values."</em></p></div>
+
+  <ul>
+    <li>Multiple parameters are separated by commas</li>
+    <li><strong>Default values</strong> — if no argument is given, PHP uses the default</li>
+  </ul>
+
+  <pre><code>function greetUser($name = "Guest") {
+    echo "Welcome, $name!";
+}
+
+greetUser("Alyssa"); // Output: Welcome, Alyssa!
+greetUser();         // Output: Welcome, Guest! (uses default)</code></pre>
+
+  <div class="warn"><p><strong>Common mistake:</strong> Putting a parameter with a default value <em>before</em> one without a default. Always put defaults at the end: <code>function test($a, $b = 5)</code> ✓</p></div>
+
+  <div class="summary"><strong>Section summary:</strong> Parameters = placeholders. Arguments = real values. Add default values so the function still works if an argument is omitted.</div>
+
+  <h3>4. Returning values</h3>
+  <p>Use <code>return</code> when you want the function to give back a computed value instead of just printing it.</p>
+
+  <ul>
+    <li><code>return</code> immediately <strong>stops</strong> the function — no code after it runs</li>
+    <li>Can return any data type: string, integer, float, array, object, boolean</li>
+    <li>You can store the returned value in a variable</li>
+  </ul>
+
+  <pre><code>function addNumbers($num1, $num2) {
+    $result = $num1 + $num2;
+    return $result;
+}
+
+$sum = addNumbers(5, 10);
+echo $sum; // Output: 15</code></pre>
+
+  <div class="tip"><p><strong>Exam tip:</strong> A function with no <code>return</code> statement returns <code>NULL</code> by default.</p></div>
+
+  <div class="summary"><strong>Section summary:</strong> Use <code>return</code> to get a value out of a function and stop its execution.</div>
+
+  <h3>5. Pass by value vs. pass by reference</h3>
+
+  <table class="compare-table">
+    <tr><th>Feature</th><th>Pass by Value (default)</th><th>Pass by Reference (&)</th></tr>
+    <tr><td>What's passed</td><td>A copy of the variable</td><td>The actual memory address</td></tr>
+    <tr><td>Changes inside function</td><td>Do NOT affect the original</td><td>DO affect the original</td></tr>
+    <tr><td>Syntax</td><td><code>function add($n)</code></td><td><code>function add(&$n)</code></td></tr>
+  </table>
+
+  <pre><code>// Pass by Value — original unchanged
+function addFiveVal($num) {
+    $num += 5;
+}
+$n = 10;
+addFiveVal($n);
+echo $n; // Still 10
+
+// Pass by Reference — original IS changed
+function addFiveRef(&$num) {
+    $num += 5;
+}
+$n = 10;
+addFiveRef($n);
+echo $n; // Now 15</code></pre>
+
+  <div class="tip"><p><strong>Exam tip:</strong> The <code>&</code> symbol goes in the <strong>function definition</strong> (before the parameter), not in the function call.</p></div>
+
+  <div class="summary"><strong>Section summary:</strong> By value = safe copy. By reference (<code>&</code>) = edits the original variable.</div>
+
+  <h3>6. Variable scope</h3>
+  <p><strong>Scope</strong> = where a variable can be accessed.</p>
+
+  <ul>
+    <li><strong>Local scope</strong> — variable created inside a function; only accessible there</li>
+    <li><strong>Global scope</strong> — variable created outside all functions; NOT accessible inside a function by default</li>
+    <li><strong><code>global</code> keyword</strong> — used inside a function to explicitly access a global variable</li>
+  </ul>
+
+  <pre><code>$x = 10; // Global variable
+
+function testScope() {
+    global $x;  // Now we can use $x
+    echo $x;    // Output: 10
+}
+
+testScope();</code></pre>
+
+  <div class="warn"><p><strong>Common mistake:</strong> Trying to use a global variable inside a function without the <code>global</code> keyword — PHP will treat it as a separate, undefined local variable.</p></div>
+
+  <div class="danger"><p><strong>What about superglobals?</strong> Variables like <code>$_GET</code>, <code>$_POST</code>, <code>$_FILES</code>, and <code>$_SESSION</code> are always accessible everywhere — no <code>global</code> keyword needed. These are called <strong>superglobals</strong>.</p></div>
+
+  <div class="summary"><strong>Section summary:</strong> Variables live in bubbles. Use <code>global</code> to reach outside a function's bubble. Superglobals have no bubble — they're always available.</div>
+</div>
+
+<div id="forms" class="section">
+  <h2>HTML Forms & PHP Input Validation</h2>
+
+  <h3>1. HTML form basics</h3>
+  <p>An HTML <code>&lt;form&gt;</code> is the standard way to collect user input and send it to a server for processing.</p>
+
+  <ul>
+    <li><code>&lt;form&gt;</code> — the wrapper for all inputs; defines how data is sent</li>
+    <li><code>&lt;label&gt;</code> — links a text label to an input using <code>for</code> attribute; improves accessibility and usability (clicking the label focuses the input)</li>
+    <li><code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code> — different input field types</li>
+  </ul>
+
+  <pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="user_email"&gt;</code></pre>
+
+  <div class="tip"><p><strong>Exam tip:</strong> The <code>for</code> attribute on <code>&lt;label&gt;</code> must match the <code>id</code> attribute on the input — not the <code>name</code>.</p></div>
+
+  <h3>2. Key form attributes</h3>
+
+  <table class="compare-table">
+    <tr><th>Attribute</th><th>Purpose</th><th>Example</th></tr>
+    <tr><td><code>action</code></td><td>URL of the PHP script to process the form</td><td><code>action="process.php"</code></td></tr>
+    <tr><td><code>method</code></td><td>HTTP method to send data (GET or POST)</td><td><code>method="post"</code></td></tr>
+    <tr><td><code>target</code></td><td>Where to display response (<code>_self</code> or <code>_blank</code>)</td><td><code>target="_blank"</code></td></tr>
+    <tr><td><code>enctype</code></td><td>Encoding type — required for file uploads</td><td><code>enctype="multipart/form-data"</code></td></tr>
+  </table>
+
+  <h3>3. GET vs. POST — know this for the exam!</h3>
+
+  <table class="compare-table">
+    <tr><th>Feature</th><th>GET</th><th>POST</th></tr>
+    <tr><td>Data location</td><td>Appended to the URL (visible)</td><td>Hidden in the request body</td></tr>
+    <tr><td>Security</td><td>Low — never use for passwords</td><td>Higher — suitable for sensitive info</td></tr>
+    <tr><td>Data limit</td><td>~2000 characters max</td><td>Default ~8MB</td></tr>
+    <tr><td>Bookmarkable</td><td>Yes</td><td>No</td></tr>
+    <tr><td>Best for</td><td>Search queries, filtering, reading data</td><td>Logins, forms, file uploads, sensitive data</td></tr>
+  </table>
+
+  <div class="mnemonic"><strong>Memory trick:</strong> <em>"GET is for <strong>G</strong>etting info (public). POST is for <strong>P</strong>ushing sensitive data (private)."</em></div>
+
+  <h3>4. PHP validation and sanitization</h3>
+
+  <div class="danger"><p><strong>Golden rule:</strong> Never trust user input! Malicious users can inject scripts (XSS attacks) through form fields.</p></div>
+
+  <h4>isset() vs. empty()</h4>
+  <ul>
+    <li><code>isset($var)</code> — returns <code>true</code> if the variable exists AND is not <code>NULL</code></li>
+    <li><code>empty($var)</code> — returns <code>true</code> if the variable is <code>""</code>, <code>0</code>, <code>NULL</code>, <code>false</code>, or an empty array</li>
+  </ul>
+
+  <div class="tip"><p><strong>Exam tip:</strong> <code>isset("0")</code> returns <code>true</code> (it exists), but <code>empty("0")</code> returns <code>true</code> (0 is considered empty). This is a classic trick question!</p></div>
+
+  <h4>Sanitization functions</h4>
+  <ul>
+    <li><code>trim($str)</code> — removes whitespace, tabs, newlines from both ends</li>
+    <li><code>stripslashes($str)</code> — removes backslashes used to escape characters</li>
+    <li><code>htmlspecialchars($str)</code> — converts <code>&lt;</code>, <code>&gt;</code>, <code>&</code> into safe HTML entities — <strong>key XSS prevention tool</strong></li>
+  </ul>
+
+  <pre><code>function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+$name = sanitizeInput($_POST['name']);</code></pre>
+
+  <div class="mnemonic"><strong>Remember the order — TSH:</strong> Trim → Stripslashes → Htmlspecialchars</div>
+
+  <div class="summary"><strong>Section summary:</strong> Always validate (check the data) and sanitize (clean the data) before using any user input. Use <code>htmlspecialchars()</code> to block XSS attacks.</div>
+</div>
+
+<div id="files" class="section">
+  <h2>PHP File Handling & Secure File Uploads</h2>
+
+  <h3>1. Why handle files?</h3>
+  <p>Unlike variables that disappear when a script ends, <strong>files persist on the server</strong>. PHP can read, write, create, and delete files — useful for logs, configs, and user-uploaded content.</p>
+
+  <h3>2. Opening and closing files</h3>
+  <p>Always open a file before using it and close it when done to free server resources.</p>
+
+  <ul>
+    <li><code>fopen($filename, $mode)</code> — opens a file and returns a file handle (pointer)</li>
+    <li><code>fclose($handle)</code> — always close after you're done</li>
+  </ul>
+
+  <h4>Common modes — know these!</h4>
+  <table class="compare-table">
+    <tr><th>Mode</th><th>Name</th><th>What it does</th></tr>
+    <tr><td><code>'r'</code></td><td>Read</td><td>Opens for reading. File must exist. Starts at beginning.</td></tr>
+    <tr><td><code>'w'</code></td><td>Write</td><td>Opens for writing. <strong>Erases existing content!</strong> Creates file if not found.</td></tr>
+    <tr><td><code>'a'</code></td><td>Append</td><td>Adds to the end. Does NOT erase content. Creates file if not found.</td></tr>
+    <tr><td><code>'r+'</code></td><td>Read+Write</td><td>Opens for both. File must exist.</td></tr>
+    <tr><td><code>'w+'</code></td><td>Write+Read</td><td>Read and write. Erases existing content.</td></tr>
+  </table>
+
+  <div class="warn"><p><strong>Watch out:</strong> Mode <code>'w'</code> deletes all existing content in the file instantly! Use <code>'a'</code> if you want to add to a file without destroying it.</p></div>
+
+  <div class="mnemonic"><strong>Mode trick — "R eads, W ipes, A ppends"</strong></div>
+
+  <h3>3. Reading and writing data</h3>
+
+  <h4>Reading functions</h4>
+  <ul>
+    <li><code>fread($handle, $size)</code> — reads a specific number of bytes</li>
+    <li><code>fgets($handle)</code> — reads one line at a time (great for large files)</li>
+    <li><code>file_get_contents($filename)</code> — reads the entire file into a single string (easiest method, no handle needed)</li>
+  </ul>
+
+  <h4>Writing function</h4>
+  <ul>
+    <li><code>fwrite($handle, $string)</code> — writes text to a file based on the mode</li>
+  </ul>
+
+  <pre><code>// Quick read — entire file at once
+$content = file_get_contents("data.txt");
+echo $content;
+
+// Line-by-line read — better for large files
+$handle = fopen("data.txt", "r");
+while (!feof($handle)) {
+    $line = fgets($handle);
+    echo $line;
+}
+fclose($handle);
+
+// Writing
+$handle = fopen("log.txt", "a");
+fwrite($handle, "New log entry\n");
+fclose($handle);</code></pre>
+
+  <div class="tip"><p><strong>Exam tip:</strong> <code>feof()</code> means "end of file" — use it in a while loop to stop reading when you reach the end.</p></div>
+
+  <div class="summary"><strong>Section summary:</strong> Use <code>file_get_contents()</code> for simple reads. Use <code>fgets()</code> for line-by-line. Use <code>fwrite()</code> with mode <code>'a'</code> to add to a file safely.</div>
+
+  <h3>4. Secure file uploads</h3>
+
+  <h4>Required setup</h4>
+  <ol>
+    <li>Form <code>method</code> must be <code>"POST"</code></li>
+    <li>Form <code>enctype</code> must be <code>"multipart/form-data"</code></li>
+    <li>Include an <code>&lt;input type="file"&gt;</code> field</li>
+  </ol>
+
+  <pre><code>&lt;form method="POST" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="userfile"&gt;
+    &lt;input type="submit" value="Upload"&gt;
+&lt;/form&gt;</code></pre>
+
+  <h4>The $_FILES superglobal</h4>
+  <p>When a file is uploaded, PHP stores its info in <code>$_FILES</code>:</p>
+  <ul>
+    <li><code>$_FILES['userfile']['name']</code> — original filename from user's computer</li>
+    <li><code>$_FILES['userfile']['tmp_name']</code> — temporary server path where PHP stored it</li>
+    <li><code>$_FILES['userfile']['size']</code> — file size in bytes</li>
+    <li><code>$_FILES['userfile']['type']</code> — MIME type (e.g., <code>image/jpeg</code>)</li>
+    <li><code>$_FILES['userfile']['error']</code> — error code (0 = no error)</li>
+  </ul>
+
+  <div class="tip"><p><strong>Exam tip:</strong> The file is first stored in a <strong>temporary folder</strong>. You must use <code>move_uploaded_file()</code> to move it to its permanent location — otherwise it gets deleted when the script ends.</p></div>
+
+  <pre><code>$tmpPath = $_FILES['userfile']['tmp_name'];
+$destination = "uploads/" . $_FILES['userfile']['name'];
+move_uploaded_file($tmpPath, $destination);</code></pre>
+
+  <h3>5. Security checks for uploads</h3>
+
+  <div class="danger"><p><strong>Never let users upload any file they want without validation!</strong></p></div>
+
+  <ul>
+    <li><strong>Check if file already exists:</strong> <code>file_exists($path)</code></li>
+    <li><strong>Check file size:</strong> <code>$_FILES['userfile']['size'] &lt;= 500000</code> (500KB limit)</li>
+    <li><strong>Check file type/extension:</strong> Use an allowlist (only .jpg, .png, .pdf, etc.)</li>
+  </ul>
+
+  <pre><code>$allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+$ext = strtolower(pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION));
+
+if (!in_array($ext, $allowedTypes)) {
+    echo "Error: Invalid file type.";
+} elseif ($_FILES['userfile']['size'] > 500000) {
+    echo "Error: File too large.";
+} elseif (file_exists($destination)) {
+    echo "Error: File already exists.";
+} else {
+    move_uploaded_file($_FILES['userfile']['tmp_name'], $destination);
+    echo "Upload successful!";
+}</code></pre>
+
+  <div class="mnemonic"><strong>Upload security checklist — "TEN":</strong> Type check · Existence check · Number/size check</div>
+
+  <div class="summary"><strong>Section summary:</strong> File uploads need POST + multipart enctype. Use <code>$_FILES</code> to get file info. Always validate type, size, and name before calling <code>move_uploaded_file()</code>.</div>
+</div>
+
+<div id="recall" class="section">
+  <h2>Quick recall — tap to flip</h2>
+  <p style="color:var(--color-text-secondary);font-size:14px;margin-bottom:1rem">Tap any card to reveal the answer. Test yourself before the exam!</p>
+  <div class="qr-grid" id="qrGrid"></div>
+</div>
+
+<div id="quiz" class="section">
+  <h2>Practice quiz</h2>
+  <p style="color:var(--color-text-secondary);font-size:14px;margin-bottom:0.25rem">Answer each question, then click "Show Answer" to check.</p>
+  <div class="score-bar"><div class="score-fill" id="scoreFill" style="width:0%"></div></div>
+  <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem" id="scoreLabel">0 / 13 answered</p>
+  <div id="quizContainer"></div>
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => {
+    if(t.getAttribute('onclick').includes(id)) t.classList.add('active');
+  });
+}
+
+const qrData = [
+  {q:"What keyword creates a function in PHP?", a:"function"},
+  {q:"Are PHP function names case-sensitive?", a:"No — myFunc() and MYFUNC() are the same"},
+  {q:"What does the return keyword do?", a:"Sends a value back and immediately stops the function"},
+  {q:"What symbol is used for pass by reference?", a:"& (ampersand) — placed before the parameter: &$var"},
+  {q:"What keyword accesses a global variable inside a function?", a:"global — e.g., global $x;"},
+  {q:"What does isset() check?", a:"If a variable exists and is NOT null"},
+  {q:"What does empty() return true for?", a:"Empty string \"\", 0, NULL, false, empty array"},
+  {q:"Which function prevents XSS in form input?", a:"htmlspecialchars()"},
+  {q:"Which form method hides data in the request body?", a:"POST"},
+  {q:"What enctype is required for file uploads?", a:"multipart/form-data"},
+  {q:"What PHP array stores uploaded file data?", a:"$_FILES superglobal"},
+  {q:"Which function moves an uploaded file permanently?", a:"move_uploaded_file()"},
+  {q:"What file mode appends without erasing content?", a:"'a' (append mode)"},
+  {q:"Which function reads an entire file as a string?", a:"file_get_contents()"},
+  {q:"What does feof() check?", a:"Whether the file pointer has reached the end of the file"},
+];
+
+const qrGrid = document.getElementById('qrGrid');
+qrData.forEach((item, i) => {
+  const card = document.createElement('div');
+  card.className = 'qr-card';
+  card.innerHTML = `<div class="qr-q">${item.q}</div><div class="qr-a">${item.a}</div><div class="qr-hint">tap to reveal</div>`;
+  card.onclick = () => {
+    card.classList.toggle('flipped');
+    card.querySelector('.qr-hint').style.display = card.classList.contains('flipped') ? 'none' : 'block';
+  };
+  qrGrid.appendChild(card);
+});
+
+const quizData = [
+  {type:'mc', label:'Multiple choice', q:'Which of the following is a valid function name in PHP?', choices:['1_doTask()','_doTask()','do-task()','1doTask()'], correct:1, explanation:'Function names must start with a letter or underscore — not a number or hyphen.'},
+  {type:'mc', label:'Multiple choice', q:'What is the output of this code?\n$n = 5;\nfunction addTen($n) { $n += 10; }\naddTen($n);\necho $n;', choices:['15','5','10','Error'], correct:1, explanation:'Pass by value — the function gets a COPY of $n. The original stays at 5.'},
+  {type:'mc', label:'Multiple choice', q:'Which file mode ERASES existing content when opening a file?', choices:["'r'","'a'","'w'","'r+'"], correct:2, explanation:"Mode 'w' (write) truncates/erases the file. Use 'a' to append safely."},
+  {type:'mc', label:'Multiple choice', q:'To upload files, the form\'s enctype must be set to:', choices:['text/plain','application/json','multipart/form-data','application/x-www-form-urlencoded'], correct:2, explanation:"multipart/form-data is the only enctype that supports file uploads."},
+  {type:'mc', label:'Multiple choice', q:'What does htmlspecialchars() protect against?', choices:['SQL Injection','XSS (Cross-Site Scripting)','CSRF attacks','Brute force attacks'], correct:1, explanation:'htmlspecialchars() converts < and > into HTML entities, preventing browsers from executing injected script tags.'},
+  {type:'id', label:'Identification', q:'What PHP superglobal array contains uploaded file information such as the filename and temporary path?', correct:'$_FILES', explanation:'$_FILES holds keys like name, tmp_name, size, type, and error.'},
+  {type:'id', label:'Identification', q:'Name the function used to move an uploaded file from its temporary location to a permanent server path.', correct:'move_uploaded_file()', explanation:'move_uploaded_file($tmp, $destination) is the correct way to finalize an upload.'},
+  {type:'id', label:'Identification', q:'What keyword is used inside a function to access a variable defined in the global scope?', correct:'global', explanation:'Without the global keyword, PHP creates a new local variable instead of accessing the outer one.'},
+  {type:'id', label:'Identification', q:'Which sanitization function removes extra whitespace from both ends of a string?', correct:'trim()', explanation:'trim() strips whitespace, tabs, and newlines from the start and end.'},
+  {type:'sa', label:'Short answer', q:'Explain the difference between a parameter and an argument in PHP functions.', correct:'A parameter is the placeholder variable in the function definition. An argument is the actual value passed when the function is called.'},
+  {type:'sa', label:'Short answer', q:'What is the difference between pass by value and pass by reference? Give the syntax for each.', correct:'Pass by value (default): function add($n) — works on a copy, original unchanged. Pass by reference: function add(&$n) — works on the original variable using the & symbol.'},
+  {type:'sa', label:'Short answer', q:'What three security checks should you always perform before saving an uploaded file?', correct:'1. Check file type/extension (allowlist only safe types) 2. Check file size (set a max limit) 3. Check if a file with the same name already exists using file_exists()'},
+  {type:'sa', label:'Short answer', q:'Why should you use POST instead of GET when submitting a login form?', correct:'GET appends data to the URL making it visible to anyone who looks (bad for passwords). POST hides the data in the request body, supports larger payloads (~8MB), and is not stored in browser history or server logs.'},
+];
+
+let answered = 0;
+const quizContainer = document.getElementById('quizContainer');
+
+quizData.forEach((q, i) => {
+  const block = document.createElement('div');
+  block.className = 'q-block';
+  let inner = `<div class="q-label"><span class="badge ${q.type === 'mc' ? 'badge-info' : q.type === 'id' ? 'badge-success' : 'badge-warn'}">${q.label}</span> Q${i+1}</div>`;
+  inner += `<div class="q-text" style="white-space:pre-wrap">${q.q}</div>`;
+  if(q.type === 'mc') {
+    inner += `<div class="q-choices">`;
+    q.choices.forEach((c, ci) => {
+      inner += `<label><input type="radio" name="q${i}" value="${ci}"> ${c}</label>`;
+    });
+    inner += `</div>`;
+  } else {
+    inner += `<input class="short-answer-input" type="text" placeholder="${q.type === 'id' ? 'Type your answer...' : 'Summarize your answer briefly...'}" />`;
+  }
+  inner += `<br><button class="reveal-btn" onclick="revealAnswer(${i})">Show answer</button>`;
+  inner += `<div class="answer" id="ans${i}"><strong>Correct answer:</strong> ${q.correct}${q.explanation ? '<br><span style="margin-top:4px;display:block">'+q.explanation+'</span>' : ''}</div>`;
+  block.innerHTML = inner;
+  quizContainer.appendChild(block);
+});
+
+function revealAnswer(i) {
+  const ans = document.getElementById('ans'+i);
+  if(!ans.classList.contains('show')) {
+    ans.classList.add('show');
+    answered++;
+    document.getElementById('scoreLabel').textContent = answered + ' / 13 answered';
+    document.getElementById('scoreFill').style.width = Math.round((answered/13)*100)+'%';
+  }
+}
+</script>
