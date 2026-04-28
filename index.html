@@ -90,7 +90,7 @@ h2 {
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px;line-height:1.7}
 .nav{display:flex;gap:6px;flex-wrap:wrap;padding:1rem 0 1.25rem}
-.tab{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:13px;color:var(--color-text-secondary);font-family:var(--font-sans)}
+.tab{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:13px;color:var(--color-text-secondary);[...]
 .tab.active{background:var(--color-background-secondary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
 .tab:hover:not(.active){background:var(--color-background-secondary)}
 .section{display:none}.section.active{display:block}
@@ -131,11 +131,11 @@ pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
 .q-choices label{display:block;padding:6px 10px;border-radius:var(--border-radius-md);cursor:pointer;font-size:14px;margin:3px 0}
 .q-choices label:hover{background:var(--color-background-secondary)}
 .q-choices input{margin-right:8px}
-.reveal-btn{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:13px;font-family:var(--font-sans);margin-top:0.5rem}
+.reveal-btn{padding:7px 16px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;cursor:pointer;font-size:13px;font-family:var(--font-san[...]
 .reveal-btn:hover{background:var(--color-background-secondary)}
 .answer{display:none;margin-top:0.75rem;padding:0.75rem 1rem;background:var(--color-background-success);border-radius:var(--border-radius-md);font-size:14px;color:var(--color-text-success)}
 .answer.show{display:block}
-.short-answer-input{width:100%;padding:8px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-family:var(--font-sans);font-size:14px;color:var(--color-text-primary);margin-top:0.5rem}
+.short-answer-input{width:100%;padding:8px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-family:var(-[...]
 .qr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:1rem 0}
 .qr-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem;cursor:pointer;border:0.5px solid var(--color-border-tertiary)}
 .qr-q{font-size:13px;font-weight:500;margin-bottom:4px}
@@ -166,7 +166,7 @@ pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
   <h2>PHP Functions & Modular Programming</h2>
 
   <h3>1. What is a function?</h3>
-  <p>A <strong>function</strong> is a named, reusable block of code that performs a specific task. It can accept input (<strong>parameters</strong>) and optionally return a result (<strong>return value</strong>).</p>
+  <p>A <strong>function</strong> is a named, reusable block of code that performs a specific task. It can accept input (<strong>parameters</strong>) and optionally return a result (<strong>return[...]
 
   <h4>Why use functions?</h4>
   <ul>
@@ -229,7 +229,7 @@ sayHello(); // Output: Hello, IT Students!</code></pre>
 greetUser("Alyssa"); // Output: Welcome, Alyssa!
 greetUser();         // Output: Welcome, Guest! (uses default)</code></pre>
 
-  <div class="warn"><p><strong>Common mistake:</strong> Putting a parameter with a default value <em>before</em> one without a default. Always put defaults at the end: <code>function test($a, $b = 5)</code> ✓</p></div>
+  <div class="warn"><p><strong>Common mistake:</strong> Putting a parameter with a default value <em>before</em> one without a default. Always put defaults at the end: <code>function test($a, $b [...]
 
   <div class="summary"><strong>Section summary:</strong> Parameters = placeholders. Arguments = real values. Add default values so the function still works if an argument is omitted.</div>
 
@@ -301,11 +301,11 @@ function testScope() {
 
 testScope();</code></pre>
 
-  <div class="warn"><p><strong>Common mistake:</strong> Trying to use a global variable inside a function without the <code>global</code> keyword — PHP will treat it as a separate, undefined local variable.</p></div>
+  <div class="warn"><p><strong>Common mistake:</strong> Trying to use a global variable inside a function without the <code>global</code> keyword — PHP will treat it as a separate, undefined lo[...]
 
-  <div class="danger"><p><strong>What about superglobals?</strong> Variables like <code>$_GET</code>, <code>$_POST</code>, <code>$_FILES</code>, and <code>$_SESSION</code> are always accessible everywhere — no <code>global</code> keyword needed. These are called <strong>superglobals</strong>.</p></div>
+  <div class="danger"><p><strong>What about superglobals?</strong> Variables like <code>$_GET</code>, <code>$_POST</code>, <code>$_FILES</code>, and <code>$_SESSION</code> are always accessible e[...]
 
-  <div class="summary"><strong>Section summary:</strong> Variables live in bubbles. Use <code>global</code> to reach outside a function's bubble. Superglobals have no bubble — they're always available.</div>
+  <div class="summary"><strong>Section summary:</strong> Variables live in bubbles. Use <code>global</code> to reach outside a function's bubble. Superglobals have no bubble — they're always av[...]
 </div>
 
 <div id="forms" class="section">
@@ -323,7 +323,7 @@ testScope();</code></pre>
   <pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
 &lt;input type="email" id="email" name="user_email"&gt;</code></pre>
 
-  <div class="tip"><p><strong>Exam tip:</strong> The <code>for</code> attribute on <code>&lt;label&gt;</code> must match the <code>id</code> attribute on the input — not the <code>name</code>.</p></div>
+  <div class="tip"><p><strong>Exam tip:</strong> The <code>for</code> attribute on <code>&lt;label&gt;</code> must match the <code>id</code> attribute on the input — not the <code>name</code>.<[...]
 
   <h3>2. Key form attributes</h3>
 
@@ -358,7 +358,7 @@ testScope();</code></pre>
     <li><code>empty($var)</code> — returns <code>true</code> if the variable is <code>""</code>, <code>0</code>, <code>NULL</code>, <code>false</code>, or an empty array</li>
   </ul>
 
-  <div class="tip"><p><strong>Exam tip:</strong> <code>isset("0")</code> returns <code>true</code> (it exists), but <code>empty("0")</code> returns <code>true</code> (0 is considered empty). This is a classic trick question!</p></div>
+  <div class="tip"><p><strong>Exam tip:</strong> <code>isset("0")</code> returns <code>true</code> (it exists), but <code>empty("0")</code> returns <code>true</code> (0 is considered empty). This[...]
 
   <h4>Sanitization functions</h4>
   <ul>
@@ -378,14 +378,14 @@ $name = sanitizeInput($_POST['name']);</code></pre>
 
   <div class="mnemonic"><strong>Remember the order — TSH:</strong> Trim → Stripslashes → Htmlspecialchars</div>
 
-  <div class="summary"><strong>Section summary:</strong> Always validate (check the data) and sanitize (clean the data) before using any user input. Use <code>htmlspecialchars()</code> to block XSS attacks.</div>
+  <div class="summary"><strong>Section summary:</strong> Always validate (check the data) and sanitize (clean the data) before using any user input. Use <code>htmlspecialchars()</code> to block X[...]
 </div>
 
 <div id="files" class="section">
   <h2>PHP File Handling & Secure File Uploads</h2>
 
   <h3>1. Why handle files?</h3>
-  <p>Unlike variables that disappear when a script ends, <strong>files persist on the server</strong>. PHP can read, write, create, and delete files — useful for logs, configs, and user-uploaded content.</p>
+  <p>Unlike variables that disappear when a script ends, <strong>files persist on the server</strong>. PHP can read, write, create, and delete files — useful for logs, configs, and user-uploade[...]
 
   <h3>2. Opening and closing files</h3>
   <p>Always open a file before using it and close it when done to free server resources.</p>
@@ -405,7 +405,7 @@ $name = sanitizeInput($_POST['name']);</code></pre>
     <tr><td><code>'w+'</code></td><td>Write+Read</td><td>Read and write. Erases existing content.</td></tr>
   </table>
 
-  <div class="warn"><p><strong>Watch out:</strong> Mode <code>'w'</code> deletes all existing content in the file instantly! Use <code>'a'</code> if you want to add to a file without destroying it.</p></div>
+  <div class="warn"><p><strong>Watch out:</strong> Mode <code>'w'</code> deletes all existing content in the file instantly! Use <code>'a'</code> if you want to add to a file without destroying i[...]
 
   <div class="mnemonic"><strong>Mode trick — "R eads, W ipes, A ppends"</strong></div>
 
@@ -442,7 +442,7 @@ fclose($handle);</code></pre>
 
   <div class="tip"><p><strong>Exam tip:</strong> <code>feof()</code> means "end of file" — use it in a while loop to stop reading when you reach the end.</p></div>
 
-  <div class="summary"><strong>Section summary:</strong> Use <code>file_get_contents()</code> for simple reads. Use <code>fgets()</code> for line-by-line. Use <code>fwrite()</code> with mode <code>'a'</code> to add to a file safely.</div>
+  <div class="summary"><strong>Section summary:</strong> Use <code>file_get_contents()</code> for simple reads. Use <code>fgets()</code> for line-by-line. Use <code>fwrite()</code> with mode <cod[...]
 
   <h3>4. Secure file uploads</h3>
 
@@ -468,7 +468,7 @@ fclose($handle);</code></pre>
     <li><code>$_FILES['userfile']['error']</code> — error code (0 = no error)</li>
   </ul>
 
-  <div class="tip"><p><strong>Exam tip:</strong> The file is first stored in a <strong>temporary folder</strong>. You must use <code>move_uploaded_file()</code> to move it to its permanent location — otherwise it gets deleted when the script ends.</p></div>
+  <div class="tip"><p><strong>Exam tip:</strong> The file is first stored in a <strong>temporary folder</strong>. You must use <code>move_uploaded_file()</code> to move it to its permanent locati[...]
 
   <pre><code>$tmpPath = $_FILES['userfile']['tmp_name'];
 $destination = "uploads/" . $_FILES['userfile']['name'];
@@ -500,7 +500,7 @@ if (!in_array($ext, $allowedTypes)) {
 
   <div class="mnemonic"><strong>Upload security checklist — "TEN":</strong> Type check · Existence check · Number/size check</div>
 
-  <div class="summary"><strong>Section summary:</strong> File uploads need POST + multipart enctype. Use <code>$_FILES</code> to get file info. Always validate type, size, and name before calling <code>move_uploaded_file()</code>.</div>
+  <div class="summary"><strong>Section summary:</strong> File uploads need POST + multipart enctype. Use <code>$_FILES</code> to get file info. Always validate type, size, and name before calling[...]
 </div>
 
 <div id="recall" class="section">
@@ -518,6 +518,24 @@ if (!in_array($ext, $allowedTypes)) {
 </div>
 
 <script>
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+
+  // Save preference
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+}
+
+// Load saved theme on page load
+window.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+});
+
 function showSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -558,19 +576,19 @@ qrData.forEach((item, i) => {
 });
 
 const quizData = [
-  {type:'mc', label:'Multiple choice', q:'Which of the following is a valid function name in PHP?', choices:['1_doTask()','_doTask()','do-task()','1doTask()'], correct:1, explanation:'Function names must start with a letter or underscore — not a number or hyphen.'},
-  {type:'mc', label:'Multiple choice', q:'What is the output of this code?\n$n = 5;\nfunction addTen($n) { $n += 10; }\naddTen($n);\necho $n;', choices:['15','5','10','Error'], correct:1, explanation:'Pass by value — the function gets a COPY of $n. The original stays at 5.'},
-  {type:'mc', label:'Multiple choice', q:'Which file mode ERASES existing content when opening a file?', choices:["'r'","'a'","'w'","'r+'"], correct:2, explanation:"Mode 'w' (write) truncates/erases the file. Use 'a' to append safely."},
-  {type:'mc', label:'Multiple choice', q:'To upload files, the form\'s enctype must be set to:', choices:['text/plain','application/json','multipart/form-data','application/x-www-form-urlencoded'], correct:2, explanation:"multipart/form-data is the only enctype that supports file uploads."},
-  {type:'mc', label:'Multiple choice', q:'What does htmlspecialchars() protect against?', choices:['SQL Injection','XSS (Cross-Site Scripting)','CSRF attacks','Brute force attacks'], correct:1, explanation:'htmlspecialchars() converts < and > into HTML entities, preventing browsers from executing injected script tags.'},
-  {type:'id', label:'Identification', q:'What PHP superglobal array contains uploaded file information such as the filename and temporary path?', correct:'$_FILES', explanation:'$_FILES holds keys like name, tmp_name, size, type, and error.'},
-  {type:'id', label:'Identification', q:'Name the function used to move an uploaded file from its temporary location to a permanent server path.', correct:'move_uploaded_file()', explanation:'move_uploaded_file($tmp, $destination) is the correct way to finalize an upload.'},
-  {type:'id', label:'Identification', q:'What keyword is used inside a function to access a variable defined in the global scope?', correct:'global', explanation:'Without the global keyword, PHP creates a new local variable instead of accessing the outer one.'},
-  {type:'id', label:'Identification', q:'Which sanitization function removes extra whitespace from both ends of a string?', correct:'trim()', explanation:'trim() strips whitespace, tabs, and newlines from the start and end.'},
-  {type:'sa', label:'Short answer', q:'Explain the difference between a parameter and an argument in PHP functions.', correct:'A parameter is the placeholder variable in the function definition. An argument is the actual value passed when the function is called.'},
-  {type:'sa', label:'Short answer', q:'What is the difference between pass by value and pass by reference? Give the syntax for each.', correct:'Pass by value (default): function add($n) — works on a copy, original unchanged. Pass by reference: function add(&$n) — works on the original variable using the & symbol.'},
-  {type:'sa', label:'Short answer', q:'What three security checks should you always perform before saving an uploaded file?', correct:'1. Check file type/extension (allowlist only safe types) 2. Check file size (set a max limit) 3. Check if a file with the same name already exists using file_exists()'},
-  {type:'sa', label:'Short answer', q:'Why should you use POST instead of GET when submitting a login form?', correct:'GET appends data to the URL making it visible to anyone who looks (bad for passwords). POST hides the data in the request body, supports larger payloads (~8MB), and is not stored in browser history or server logs.'},
+  {type:'mc', label:'Multiple choice', q:'Which of the following is a valid function name in PHP?', choices:['1_doTask()','_doTask()','do-task()','1doTask()'], correct:1, explanation:'Function na[...]
+  {type:'mc', label:'Multiple choice', q:'What is the output of this code?\n$n = 5;\nfunction addTen($n) { $n += 10; }\naddTen($n);\necho $n;', choices:['15','5','10','Error'], correct:1, explana[...]
+  {type:'mc', label:'Multiple choice', q:'Which file mode ERASES existing content when opening a file?', choices:["'r'","'a'","'w'","'r+'"], correct:2, explanation:"Mode 'w' (write) truncates/era[...]
+  {type:'mc', label:'Multiple choice', q:'To upload files, the form\'s enctype must be set to:', choices:['text/plain','application/json','multipart/form-data','application/x-www-form-urlencoded'[...]
+  {type:'mc', label:'Multiple choice', q:'What does htmlspecialchars() protect against?', choices:['SQL Injection','XSS (Cross-Site Scripting)','CSRF attacks','Brute force attacks'], correct:1, e[...]
+  {type:'id', label:'Identification', q:'What PHP superglobal array contains uploaded file information such as the filename and temporary path?', correct:'$_FILES', explanation:'$_FILES holds key[...]
+  {type:'id', label:'Identification', q:'Name the function used to move an uploaded file from its temporary location to a permanent server path.', correct:'move_uploaded_file()', explanation:'mov[...]
+  {type:'id', label:'Identification', q:'What keyword is used inside a function to access a variable defined in the global scope?', correct:'global', explanation:'Without the global keyword, PHP [...]
+  {type:'id', label:'Identification', q:'Which sanitization function removes extra whitespace from both ends of a string?', correct:'trim()', explanation:'trim() strips whitespace, tabs, and newl[...]
+  {type:'sa', label:'Short answer', q:'Explain the difference between a parameter and an argument in PHP functions.', correct:'A parameter is the placeholder variable in the function definition. [...]
+  {type:'sa', label:'Short answer', q:'What is the difference between pass by value and pass by reference? Give the syntax for each.', correct:'Pass by value (default): function add($n) — works[...]
+  {type:'sa', label:'Short answer', q:'What three security checks should you always perform before saving an uploaded file?', correct:'1. Check file type/extension (allowlist only safe types) 2. [...]
+  {type:'sa', label:'Short answer', q:'Why should you use POST instead of GET when submitting a login form?', correct:'GET appends data to the URL making it visible to anyone who looks (bad for p[...]
 ];
 
 let answered = 0;
@@ -604,23 +622,5 @@ function revealAnswer(i) {
     document.getElementById('scoreLabel').textContent = answered + ' / 13 answered';
     document.getElementById('scoreFill').style.width = Math.round((answered/13)*100)+'%';
   }
-
-  function toggleDarkMode() {
-  document.body.classList.toggle("dark");
-
-  // Save preference
-  if (document.body.classList.contains("dark")) {
-    localStorage.setItem("theme", "dark");
-  } else {
-    localStorage.setItem("theme", "light");
-  }
-}
-
-// Load saved theme
-window.onload = function () {
-  if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-  }
-};
 }
 </script>
