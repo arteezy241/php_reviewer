@@ -4,6 +4,7 @@
   --font-sans: Arial, sans-serif;
   --font-mono: Consolas, monospace;
 
+  /* LIGHT MODE */
   --color-text-primary: #111;
   --color-text-secondary: #555;
   --color-text-tertiary: #888;
@@ -33,6 +34,58 @@
 
   --border-radius-md: 6px;
   --border-radius-lg: 10px;
+}
+
+/* DARK MODE */
+.dark {
+  --color-text-primary: #f1f1f1;
+  --color-text-secondary: #cfcfcf;
+  --color-text-tertiary: #999;
+
+  --color-background-primary: #121212;
+  --color-background-secondary: #1e1e1e;
+
+  --color-border-primary: #333;
+  --color-border-secondary: #444;
+  --color-border-tertiary: #555;
+
+  --color-background-info: #1e3a5f;
+  --color-border-info: #3b82f6;
+  --color-text-info: #93c5fd;
+
+  --color-background-warning: #4a3b1a;
+  --color-border-warning: #facc15;
+  --color-text-warning: #fde68a;
+
+  --color-background-danger: #4a1f1f;
+  --color-border-danger: #ef4444;
+  --color-text-danger: #fca5a5;
+
+  --color-background-success: #1f3d2b;
+  --color-border-success: #22c55e;
+  --color-text-success: #86efac;
+}
+
+/* CLEAN LAYOUT */
+body {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background: var(--color-background-primary);
+  transition: 0.3s;
+}
+
+.nav {
+  justify-content: center;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+h2 {
+  border-bottom: 2px solid var(--color-border-tertiary);
+  padding-bottom: 6px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);color:var(--color-text-primary);font-size:15px;line-height:1.7}
@@ -95,7 +148,12 @@ pre code{background:none;border:none;padding:0;font-size:13px;line-height:1.6}
 </style>
 
 <h2 style="sr-only">PHP Functions and Forms — Exam Reviewer</h2>
-
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+  <h2>PHP Reviewer</h2>
+  <button onclick="toggleDarkMode()" style="padding:6px 12px; cursor:pointer;">
+    🌙 Toggle Mode
+  </button>
+</div>
 <div class="nav" id="nav">
   <button class="tab active" onclick="showSection('functions')">PHP Functions</button>
   <button class="tab" onclick="showSection('forms')">Forms & Validation</button>
@@ -546,5 +604,23 @@ function revealAnswer(i) {
     document.getElementById('scoreLabel').textContent = answered + ' / 13 answered';
     document.getElementById('scoreFill').style.width = Math.round((answered/13)*100)+'%';
   }
+
+  function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+
+  // Save preference
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+}
+
+// Load saved theme
+window.onload = function () {
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+  }
+};
 }
 </script>
